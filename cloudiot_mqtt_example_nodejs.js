@@ -171,7 +171,8 @@ function publishAsync (messagesSent, numMessages) {
 
   function getReadingTime() {
     let now = new Date();
-    return dateFormat(now.addMinutes(messagesSent), "yyyy-mm-dd hh:MM:ss");
+   // return now.addMinutes(messagesSent); 
+   return dateFormat(now.addMinutes(messagesSent), "yyyy-mm-dd hh:MM:ss");
   }
 
   setTimeout(function () {
@@ -179,6 +180,7 @@ function publishAsync (messagesSent, numMessages) {
 
     // Publish "payload" to the MQTT topic. qos=1 means at least once delivery.
     // Cloud IoT Core also supports qos=0 for at most once delivery.
+    console.log(getReadingTime());
     console.log('Publishing message:', payload);
     client.publish(mqttTopic, payload, { qos: 1 }, function (err) {
       if (!err) {
