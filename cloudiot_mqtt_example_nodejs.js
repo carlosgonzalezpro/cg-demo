@@ -176,7 +176,7 @@ function publishAsync (messagesSent, numMessages) {
   }
 
   setTimeout(function () {
-    const payload = `{"sensorID":"${argv.deviceId}","timecollected":"${getReadingTime()}","zipcode":"4060","latitude":"-27.448735","longitude":"152.974652","temperature":"${getRandomArbitrary(16, 22)}","humidity":"${getRandomArbitrary(20, 100)}","dewpoint":"${getRandomArbitrary(0, 3.5)}","pressure":"${getRandomArbitrary(950, 1100)}"}`;
+    const payload = `{"sensorID":"${argv.deviceId}","timecollected":"${getReadingTime()}","zipcode":"4060","latitude":"-27.448735","longitude":"152.974652","temperature":"${getRandomArbitrary(17, 22)}","humidity":"${getRandomArbitrary(20, 100)}","dewpoint":"${getRandomArbitrary(0, 3.5)}","pressure":"${getRandomArbitrary(950, 1100)}"}`;
 
     // Publish "payload" to the MQTT topic. qos=1 means at least once delivery.
     // Cloud IoT Core also supports qos=0 for at most once delivery.
