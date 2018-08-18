@@ -1,0 +1,5 @@
+//Launch node sensor simulator
+
+ node cloudiot_mqtt_example_nodejs.js --projectId=gcp-pres  --cloudRegion=us-central1 --registryId=building-sensors-registry --deviceId=building-a --privateKeyFile=./resources/rsa_private.pem --algorithm=RS256
+ node cloudiot_mqtt_example_nodejs.js --projectId=gcp-pres  --cloudRegion=us-central1 --registryId=building-sensors-registry --deviceId=building-b --privateKeyFile=./resources/rsa_private.pem --algorithm=RS256
+ node cloudiot_mqtt_example_nodejs.js --projectId=gcp-pres  --cloudRegion=us-central1 --registryId=building-sensors-registry --deviceId=building-c --privateKeyFile=./resources/rsa_private.pem --algorithm=RS256

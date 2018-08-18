@@ -1,0 +1,39 @@
+--Cloud Pub/Sub topic
+
+# Add permissions for IoT Core
+gcloud iam service-accounts create building-sensors-cloud-iot --display-name "building-sensors-cloud-iot-core"
+gcloud projects add-iam-policy-binding gcp-pres --member=serviceAccount:building-sensors-cloud-iot@system.gserviceaccount.com --role=roles/pubsub.publisher
+
+# Create PubSub topic for sensor data:
+gcloud beta pubsub topics create building-sensors-topic
+
+# Create PubSub subscription for device data:
+gcloud beta pubsub subscriptions create --topic building-sensors-topic building-sensors-subscription
+
+--Iot Device Registry
+
+# Create sensor registry:
+gcloud beta iot registries create building-sensors-registry --region us-central1 --event-pubsub-topic=building-sensors-topic
+
+
+--BigQuery Table
+
+--Gui
+dataset id - buildingDataset
+location - US
+table - buildingDataset.sensorIngest
+sensorID:STRING,timecollected:TIMESTAMP,zipcode:INTEGER,latitude:FLOAT,longitude:FLOAT,temperature:FLOAT,humidity:FLOAT,dewpoint:FLOAT,pressure:FLOAT
+
+--Cloud Dataflow
+Gui
+
+Job-Name - building-sensors-ingest
+pub/sub topic - projects/gcp-pres/topics/building-sensors-topic
+Big Query Table - gcp-pres:buildingDataset.sensorIngest
+bucket temp - gs://building-sensors-cloud/temp
+
+
+--Cloud Storage
+
+bucketname - building-sensors-cloud
+
